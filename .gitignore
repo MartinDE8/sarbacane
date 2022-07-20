@@ -1,0 +1,9 @@
+node_modules
+/vendor/
+.env
+.idea
+yarn.lock
+yarn-error.log
+public/assets/styles/
+public/db_logins.php
+

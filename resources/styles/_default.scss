@@ -1,0 +1,295 @@
+@use "sass:math";
+$mq: ('sm': 560px,'md': 724px,'lg': 1024px, 'xl': 1280px);
+$directions: ('t':top,'r':right,'b':bottom,'l':left);
+$widthSizes: (
+     "0": 0,
+     "auto": "auto",
+     "full": 100%,
+     "1\\/2": 50%,
+      "1\\/3": math.div(1, 3) * 100%,
+      "2\\/3": math.div(2, 3) * 100%,
+      "1\\/4": math.div(1, 4) * 100%,
+      "3\\/4": math.div(3, 4) * 100%,
+      "1\\/12": math.div(1, 12) * 100%,
+      "2\\/12": math.div(2, 12) * 100%,
+      "5\\/12": math.div(5, 12) * 100%,
+      "7\\/12": math.div(7, 12) * 100%,
+      "8\\/12": math.div(8, 12) * 100%,
+      "10\\/12": math.div(10, 12) * 100%,
+      "11\\/12": math.div(11, 12) * 100%,
+);
+$spacing: (
+        'auto':auto,
+        0:0,
+        1: 0.25rem,
+        2:0.5rem,
+        3: 0.75rem,
+        4: 1rem,
+        5: 1.25rem,
+        6: 1.5rem,
+        7: 1.75rem,
+        8: 2rem,
+        10: 2.5rem,
+        12: 3rem,
+        14: 3.5rem,
+        16: 4rem,
+        20: 5rem,
+        24: 6rem,
+        28: 7rem,
+        32: 8rem,
+        36: 9rem,
+        40: 10rem
+);
+$fontSize: (
+    "xs": 0.75rem, /* 12px */
+    "sm": 0.875rem, /* 14px */
+    "base": 1rem, /* 16px */
+    "lg": 1.125rem, /* 18px */
+    "xl": 1.25rem, /* 20px */
+    "2xl": 1.5rem, /* 24px */
+    "3xl": 1.875rem, /* 30px */
+    "4xl": 2.25rem, /* 36px */
+    "5xl": 3rem, /* 48px */
+    "6xl": 3.75rem, /* 60px */
+    "7xl": 4.5rem, /* 72px */
+    "8xl": 6rem, /* 96px */
+    "9xl": 8rem /* 128px */
+);
+$display: ('block','flex','inline-block');
+$f_direction: ('row':row,'row-reverse':row-reverse,'col':column,'col-reverse':column-reverse);
+$f_align: ('start','center','end');
+$f_justify: ('between':space-between,'around':space-around,'start':flex-start,'center':center,'end':flex-end);
+$positions: (relative,absolute);
+$align: (center,left,right);
+
+@each $name, $value in $widthSizes {
+    .w-#{$name}{
+        width: $value;
+    }
+    @each $directionName,$directionValue in $directions {
+        .#{$directionValue}-#{$name} {
+            #{$directionValue}: $value;
+        }
+    }
+}
+@each $name, $value in $fontSize {
+    .text-#{$name}{
+        font-size: $value;
+    }
+}
+@each $name, $value in $spacing {
+    .p-#{$name} {
+        padding: $value;
+    }
+    .px-#{$name} {
+        padding-left: $value;
+        padding-right: $value;
+    }
+    .py-#{$name} {
+        padding-top: $value;
+        padding-bottom: $value;
+    }
+    .m-#{$name} {
+        margin: $value;
+    }
+    @each $directionName,$directionValue in $directions {
+        .p#{$directionName}-#{$name} {
+            padding-#{$directionValue}: $value;
+        }
+        .m#{$directionName}-#{$name} {
+            margin-#{$directionValue}: $value;
+        }
+    }
+}
+@each $value in  $display{
+    .#{$value}{
+        display: #{$value};
+    }
+}
+@each $name,$value in $f_direction {
+    .flex-#{$name}{
+        flex-direction: $value;
+    }
+}
+@each $value in $f_align {
+    .items-#{$value}{
+        align-items: #{$value};
+    }
+}
+@each $name,$value in $f_justify {
+    .justify-#{$name}{
+        justify-content: $value;
+    }
+}
+@each $value in $positions {
+    .#{$value}{
+        position: $value;
+    }
+}
+@each $value in $align {
+    .text-#{$value}{
+        text-align: $value;
+    }
+}
+@each $directionName,$directionValue in $directions {
+    .m#{$directionName}-auto {
+        margin-#{$directionValue}: auto;
+    }
+}
+.mx-auto{
+    margin-left: auto;
+    margin-right: auto;
+}
+.hidden{
+    display: none;
+}
+@each $queryName, $queryValue in $mq {
+    @media screen and (min-width: $queryValue) {
+        @each $name, $value in $widthSizes {
+            .#{$queryName}\:w-#{$name} {
+                width: $value;
+            }
+            @each $directionName,$directionValue in $directions {
+                .#{$queryName}\:#{$directionName}-#{$name} {
+                    #{$directionValue}: $value;
+                }
+            }
+        }
+        @each $name, $value in $spacing {
+            .#{$queryName}\:p-#{$name} {
+                padding: $value;
+            }
+            .#{$queryName}\:px-#{$name} {
+                padding-left: $value;
+                padding-right: $value;
+            }
+            .#{$queryName}\:py-#{$name} {
+                padding-top: $value;
+                padding-bottom: $value;
+            }
+            .#{$queryName}\:m-#{$name} {
+                margin: $value;
+            }
+            @each $directionName,$directionValue in $directions {
+                .#{$queryName}\:p#{$directionName}-#{$name} {
+                    padding-#{$directionValue}: $value;
+                }
+                .#{$queryName}\:m#{$directionName}-#{$name} {
+                    margin-#{$directionValue}: $value;
+                }
+            }
+        }
+        @each $name,$value in $f_direction {
+            .#{$queryName}\:flex-#{$name}{
+                flex-direction: $value;
+            }
+        }
+        @each $value in  $display{
+            .#{$queryName}\:#{$value}{
+                display: #{$value};
+            }
+        }
+        @each $value in $f_align {
+            .#{$queryName}\:items-#{$value}{
+                align-items: $value;
+            }
+        }
+        @each $name,$value in $f_justify {
+            .#{$queryName}\:items-#{$name}{
+                justify-content: $value;
+            }
+        }
+        @each $value in $positions {
+            .#{$queryName}\:#{$value}{
+                position: $value;
+            }
+        }
+        @each $value in $align {
+            .#{$queryName}\:text-#{$value}{
+                text-align: $value;
+            }
+        }
+        @each $directionName,$directionValue in $directions {
+            .#{$queryName}\:m#{$directionName}-auto {
+                margin-#{$directionValue}: auto;
+            }
+        }
+        .#{$queryName}\:mx-auto{
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .#{$queryName}\:hidden{
+            display: none;
+        }
+    }
+}
+
+@each $name,$value in ('light':300,'normal':400,'medium':500,'semibold':600,'bold':700,'extrabold':800,'black':900) {
+    .font-#{$name}{
+        font-weight: $value;
+    }
+}
+
+@each $border in (2) {
+    .border-#{$border}{
+        border-width: #{$border}px;
+        border-style: solid;
+    }
+}
+
+
+@each $name,$value in ('none':1,'tight':1.25,'snug':1.375,'leading-normal':1.5) {
+    .leading-#{$name}{
+        line-height: $value;
+    }
+}
+
+.h-full {
+    height: 100%;
+}
+.max-w-full {
+    max-width: 100%;
+}
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.shrink-0 {
+    flex-shrink: 0;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.flex-center{
+    @extend .flex, .items-center, .justify-center;
+}
+
+.bg-cover{
+    background-size: cover;
+}
+.bg-center{
+    background-position: center;
+}
+
+.container {
+    @extend .w-full, .max-w-full, .ml-auto, .mr-auto;
+    @media screen  and  (min-width: map-get($mq,'sm')) {
+        max-width: 480px;
+    }
+    @media screen  and  (min-width: map-get($mq,'md')) {
+        max-width: 845px;
+    }
+    @media screen  and  (min-width: map-get($mq,'lg')) {
+        max-width: 1022px;
+    }
+}
