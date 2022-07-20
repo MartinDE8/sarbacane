@@ -1,7 +1,6 @@
 # Sarbacane technical test #
 
-![image](https://user-images.githubusercontent.com/84508912/177349993-b10aa100-3920-47d1-b6c1-db14f3dd0800.png)
-
+![screencapture-sarbacane-test-000webhostapp-2022-07-20-12_24_35](https://user-images.githubusercontent.com/66305404/179961768-767c2c7e-bf4d-4ba7-a68b-379d845724d3.png)
 
 ## Development mode ##
 
