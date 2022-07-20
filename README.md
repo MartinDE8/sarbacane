@@ -8,4 +8,10 @@ _To start working on the project :_
   * Go to sarbacane directory and launch 'npm i'
   * 'npm run start' for developement mode
   * 'npm run build' for production mode (minification of styles & scripts)
+  * Create database into your local environment
+  * Upload sarbacane.sql into your newly creted database
+  * Connect your DB into process.php
+ 
+
+ 
 
